@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { toast , ToastContainer } from 'react-toastify'
 import styled from 'styled-components'
 
 const ProductPage = () => {
@@ -18,6 +19,10 @@ const ProductPage = () => {
 
     const sendComment = async () => {
         try {
+            if(!comment){
+                toast.warning("Comment Elave et")
+                return
+            }
             let commentData = {
                 text: comment,
                 bookId: activeBook[0],
@@ -34,6 +39,8 @@ const ProductPage = () => {
             renderComments()
         } catch (err) {
             console.log(err);
+        } finally {
+            setComment("")
         }
     };
 
@@ -71,6 +78,7 @@ const ProductPage = () => {
     
     return (
         <Wrapper>
+            <ToastContainer />
             <Left>
                 <BackButton onClick={() => navigate("/")}>
                     Back
