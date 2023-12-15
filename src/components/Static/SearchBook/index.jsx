@@ -61,7 +61,7 @@ const SearchBookComponent = () => {
                     <ResultBook>
                         {loading ? "Loading ..." : ""}
                         {
-                            book.map((item) => (
+                            book?.map((item) => (
                                 <BookItem key={item.id}>
                                     <BookName onClick={() => getBookDetail(item.id)}>
                                         {item.volumeInfo.title}
