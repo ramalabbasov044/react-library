@@ -3,7 +3,8 @@ import Router from './constants/routes/index'
 import ErrorPage from './pages/error/index'
 import Admin from './pages/admin/index'
 import Login from './pages/login/index'
-import Home from './pages/home/index'
+import Catalog from './pages/catalog/index'
+import Product from './pages/product/index'
 import './assets/css/reset.css'
 const App = () => {
   return (
@@ -22,8 +23,12 @@ const App = () => {
               element={<Login />} 
           />
           <Route 
-              path={Router.home} 
-              element={<Home />} 
+              path={Router.catalog} 
+              element={<Catalog />} 
+          />
+           <Route 
+              path={Router.product} 
+              element={<Product />} 
           />
       </Routes>
     </>

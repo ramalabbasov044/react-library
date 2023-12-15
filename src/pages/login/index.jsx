@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import HeadTitle from '../../components/Static/HeadTitle/index'
-import WhiteLogo from '../../components/Icons/Logo/white'
-import Button from '../../components/Static/Button/index'
-import Input from '../../components/Static/Input/index'
+import { HeadTitle , Button , Input } from '../../components/Static/imports'
+import { WhiteLogo } from '../../components/Icons/imports'
 import useValidation from '../../hooks/Regex/checkRegex'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify'
+import Router from '../../constants/routes/index'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import Router from '../../constants/routes/index'
+
 const initialValue = {
     email: '',
     password: '',
@@ -33,12 +31,15 @@ const Login = () => {
 
     const callBackFunction = () => {
         let response = useValidation(formData.email)
-        
+
         if(response && (staticData.email === formData.email) && (staticData.password === formData.password)) {
-            toast.success("Doğru Şifre Parola");
-            navigate(Router.admin)
+            localStorage.setItem("userData",JSON.stringify(formData))
+            toast.success("Doğru Şifrə və Parola");
+            setTimeout(() => {
+                navigate(Router.admin)
+            }, 2000);
         }else {
-            toast.error("Email veya Şifre Yanlış");
+            toast.error("Email və ya Şifrə Yanlışdi");
         }
     }
 
@@ -52,7 +53,12 @@ const Login = () => {
 
           <Bottom>
               <Form>
-                  <HeadTitle title={"Welcome Admin"} size={44} weight={700} />
+                  <HeadTitle 
+                    size={44} 
+                    weight={700} 
+                    color={"#333"}
+                    title={"Welcome Admin"} 
+                  />
 
                   <InputGroup>
                       <Input 

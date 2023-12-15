@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components"
 
-const HeadTitle = ({ title , size , weight }) => {
+const HeadTitle = ({ title , size , weight , color }) => {
   return (
     <>
-        <Title style={{fontSize: size, fontWeight: weight}}>
+        <Title style={{fontSize: size, fontWeight: weight , color:color}}>
             {
                 title
             }
@@ -15,6 +15,4 @@ const HeadTitle = ({ title , size , weight }) => {
 
 export default HeadTitle
 
-const Title = styled.p`
-    
-`
+const Title = styled.p``
