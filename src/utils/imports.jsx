@@ -1,0 +1,1 @@
+export {default as removeTag} from './removeTag/index'

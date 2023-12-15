@@ -1,7 +1,8 @@
 const Router = {
-    home: "/",
     login: "/login",
     admin: "/admin",
+    catalog: "/",
+    product: "/product",
     error: "*"
 }
 export default Router
