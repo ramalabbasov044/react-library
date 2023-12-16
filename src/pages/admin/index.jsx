@@ -47,9 +47,8 @@ const Admin = () => {
         [name]: value,
       }));
     };
-
     const addBook = () => {
-        if(formData.name == '' || formData.type == '' || formData.author == '' || formData.imageUrl == '' || formData.description == ''){
+        if(formData.name == '' || formData.type == '' || formData.author[0] == '' || formData.imageUrl == '' || formData.description == ''){
           toast.error("Formu Doldurun")
         }else{
           addbook(formData,"books") 

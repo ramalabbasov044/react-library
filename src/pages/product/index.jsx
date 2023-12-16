@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { toast , ToastContainer } from 'react-toastify'
 import styled from 'styled-components'
 
 const ProductPage = () => {
@@ -18,22 +19,30 @@ const ProductPage = () => {
 
     const sendComment = async () => {
         try {
-            let commentData = {
-                text: comment,
-                bookId: activeBook[0],
-            };
-
-            let response = await fetch("https://blog-api-t6u0.onrender.com/posts/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(commentData),
-            });
-            console.log(response);
-            renderComments()
+            if(!comment){
+                toast.warning("Comment Elave et")
+                console.log('false');
+                return
+            }else{
+                let commentData = {
+                    text: comment,
+                    bookId: activeBook[0],
+                };
+    
+                let response = await fetch("https://blog-api-t6u0.onrender.com/posts/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(commentData),
+                });
+                console.log(response);
+                renderComments()
+            }
         } catch (err) {
             console.log(err);
+        } finally {
+            setComment("")
         }
     };
 
@@ -71,6 +80,7 @@ const ProductPage = () => {
     
     return (
         <Wrapper>
+            <ToastContainer />
             <Left>
                 <BackButton onClick={() => navigate("/")}>
                     Back

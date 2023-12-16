@@ -17,7 +17,7 @@ const Sidebar = () => {
             </Top>
 
             <Bottom>
-                <List>
+                <List onClick={() => navigate("/")}>
                     <BookLogo />
                     Home
                 </List>
