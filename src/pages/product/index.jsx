@@ -21,22 +21,24 @@ const ProductPage = () => {
         try {
             if(!comment){
                 toast.warning("Comment Elave et")
+                console.log('false');
                 return
+            }else{
+                let commentData = {
+                    text: comment,
+                    bookId: activeBook[0],
+                };
+    
+                let response = await fetch("https://blog-api-t6u0.onrender.com/posts/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(commentData),
+                });
+                console.log(response);
+                renderComments()
             }
-            let commentData = {
-                text: comment,
-                bookId: activeBook[0],
-            };
-
-            let response = await fetch("https://blog-api-t6u0.onrender.com/posts/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(commentData),
-            });
-            console.log(response);
-            renderComments()
         } catch (err) {
             console.log(err);
         } finally {
